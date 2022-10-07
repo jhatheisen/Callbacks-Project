@@ -33,9 +33,14 @@ AFTER YOU ARE FINISHED WITH THIS PROBLEM, ASK FOR A CODE REVIEW
 - Explain, but don't code, how you would refactor this problem to take in an
   optional initial accumulator
 *******************************************************************************/
-
+// i after cb, if i not undefined accum = i
 function mySimpleReduce(array, cb) {
   // Your code here
+  let accum = array[0];
+  for (let i = 1; i < array.length; i++) {
+    accum = cb(accum, array[i]);
+  }
+  return accum;
 }
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/

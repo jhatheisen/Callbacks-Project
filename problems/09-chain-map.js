@@ -8,6 +8,8 @@ all of the given callbacks. In other words, if three callbacks are given then:
 - the result of the second callback is given to the third callback
 - the result of the third callback is the final result
 
+// takes num, calls x amount functions, passes into next funct
+
 Examples:
 
 let add5 = function(n) {
@@ -31,6 +33,15 @@ console.log(chainMap(4, half, square));         // 4
 
 function chainMap(val, ...callbacks) {
   // Your code here
+  let cbs = [...callbacks];
+
+  for (let i = 0; i < cbs.length; i++) {
+    val = cbs[i](val);
+
+  }
+
+  return val;
+
 }
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/

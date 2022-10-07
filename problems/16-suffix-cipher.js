@@ -6,6 +6,12 @@ modified according to the callback that corresponds with the suffix that the wor
 ends with. If the word does not end in any of the suffix keys, then it should not
 be modified. You can assume that only one suffix of the object will match a word.
 
+1. takes in sentence and obj
+2. obj contains suffixes as keys, callbacks are values
+3.
+
+return new sentence all words moded by callback
+
 Examples:
 
 let cipher1 = {
@@ -32,12 +38,44 @@ console.log(suffixCipher('incremental progress is very instrumental', cipher2));
 *******************************************************************************/
 
 function suffixCipher(sentence, cipher) {
-  // Your code here
+
+  let words = sentence.split(' ');
+
+  for (let i = 0; i < words.length; i++) {
+    // curr word not connected to words[i], just copy
+    let currWord = words[i];
+
+    for (let key in cipher) {
+
+      if (currWord.endsWith(key)) {
+        // change word at words[i]
+        words[i] = cipher[key](currWord);
+      }
+    }
+  }
+  return words.join(' ');
 }
+
+
+// first test returns 'quietlee and gently visualize'
+
+// function suffixCipher(sentence, cipher) {
+//   let split = sentence.split(" ");
+
+//   for (let key in cipher){
+//     let cb = cipher[key]
+//     split.forEach((word, i) => {
+//       if(word.endsWith(key)){
+//         split[i] = cb(word)
+//       }
+//     });
+//   }
+//   return split.join(" ");
+// }
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/
 try {
   module.exports = suffixCipher;
-} catch(e) {
+} catch (e) {
   return null;
 }
